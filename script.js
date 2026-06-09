@@ -89,28 +89,17 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 1000);
   }
 
-  // --- 3. Simple Mobile Nav Toggle ---
-  const navToggle = document.querySelector('[data-nav-toggle]');
-  const siteNav = document.querySelector('[data-nav]');
+// --- 3. Simple Mobile Nav Toggle ---
+const navToggle = document.querySelector('[data-nav-toggle]');
+const siteNav = document.querySelector('[data-nav]');
 
-  if (navToggle && siteNav) {
-      navToggle.addEventListener('click', () => {
-          const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
-          navToggle.setAttribute('aria-expanded', !isExpanded);
-          
-          if (!isExpanded) {
-              siteNav.style.display = 'flex';
-              siteNav.style.flexDirection = 'column';
-              siteNav.style.position = 'absolute';
-              siteNav.style.top = '70px';
-              siteNav.style.left = '0';
-              siteNav.style.width = '100%';
-              siteNav.style.background = 'rgba(10, 10, 12, 0.95)';
-              siteNav.style.padding = '2rem';
-          } else {
-              siteNav.style.display = 'none';
-          }
-      });
-  }
-});
-
+if (navToggle && siteNav) {
+    navToggle.addEventListener('click', () => {
+        // Toggle accessibility state
+        const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+        navToggle.setAttribute('aria-expanded', !isExpanded);
+        
+        // Simply toggle the .active class we created in the CSS!
+        siteNav.classList.toggle('active');
+    });
+}

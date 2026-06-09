@@ -235,3 +235,40 @@ body {
   position: relative;
   width: 100%;
 }
+
+@media (max-width: 768px) {
+  /* Hide the nav links by default on small screens */
+  .site-nav {
+    display: none; 
+    
+    /* Crucial Fixes for Visibility: */
+    position: absolute;
+    top: 100%;                  /* Drops it perfectly below the header bar */
+    left: 0;
+    width: 100%;
+    background-color: #0a0a0c;  /* Solid dark background matching your theme */
+    border-bottom: 2px solid var(--apex-red); /* Sharp esports trim border */
+    padding: 1.5rem 0;
+    z-index: 9999;              /* Forces the menu to sit on TOP of all page elements */
+  }
+
+  /* This utility class will be toggled by JS to instantly show the menu */
+  .site-nav.active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  
+  .site-nav a {
+    color: white;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 1px;
+    width: 100%;
+    text-align: center;
+    padding: 0.5rem 0;
+  }
+}
