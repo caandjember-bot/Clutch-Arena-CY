@@ -182,3 +182,56 @@ h2 { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 1rem; }
     align-items: center;
     overflow: hidden; /* Prevents layout jitter */
 }
+
+/* Mobile First: Stacked by default */
+.prize-shell {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+/* Tablet & Desktop: Split into 2 columns when there is room */
+@media (min-width: 768px) {
+  .prize-shell {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+h1, .hero-title {
+  /* Min: 32px, Fluid scale: 5% of viewport width, Max: 72px */
+  font-size: clamp(2rem, 5vw, 4.5rem); 
+  line-height: 1.1;
+}
+
+h2 {
+  /* Scales beautifully down to mobile phone sizes */
+  font-size: clamp(1.8rem, 4vw, 3rem);
+}
+
+/* Switch from fixed desktop padding */
+.section {
+  padding: 5rem 2rem; /* Great for desktop */
+}
+
+/* Optimize for screens under tablet size */
+@media (max-width: 767px) {
+  .section {
+    padding: 2.5rem 1rem; /* Halve the padding so content fills the screen */
+  }
+  
+  main[style*="padding-top: 120px"] {
+    padding-top: 80px !important; /* Keep header spacing compact */
+  }
+}
+
+.site-nav a {
+  padding: 0.8rem 1.2rem; /* Creates a large, easy-to-tap target area */
+  display: inline-block;
+  width: 100%; /* Makes the entire width of the row clickable on mobile */
+}
+
+body {
+  overflow-x: hidden;
+  position: relative;
+  width: 100%;
+}
