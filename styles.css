@@ -1,0 +1,184 @@
+/* --- Google Fonts --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Teko:wght@500;600;700&display=swap');
+
+/* --- CSS Variables --- */
+:root {
+  --bg-dark: #0a0a0c;
+  --bg-panel: #16161a;
+  --apex-red: #da292a;
+  --apex-red-glow: rgba(218, 41, 42, 0.4);
+  --text-main: #f5f5f5;
+  --text-muted: #9aa0a6;
+  --font-display: 'Teko', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --transition: all 0.3s ease;
+}
+
+/* --- Base Reset --- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth;
+       scroll-padding-top: 100px; 
+}
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+.skip-link { position: absolute; top: -100%; left: 0; padding: 1rem; background: var(--apex-red); color: white; z-index: 9999; }
+.skip-link:focus { top: 0; }
+
+/* --- Typography --- */
+h1, h2, h3, .brand-copy strong {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  line-height: 1.1;
+  letter-spacing: 1px;
+}
+h1 { font-size: clamp(3rem, 8vw, 6rem); color: white; text-shadow: 0 4px 20px rgba(0,0,0,0.8); }
+h2 { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 1rem; }
+.eyebrow, .section-kicker { color: var(--apex-red); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 0.5rem; }
+
+/* --- Header & Nav --- */
+.site-header {
+  position: fixed; top: 0; width: 100%;
+  background: rgba(10, 10, 12, 0.9);
+  backdrop-filter: blur(10px);
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1rem 2rem; z-index: 1000;
+  height: 70px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.brand { display: flex; align-items: center; gap: 1rem; text-decoration: none; color: white; }
+.brand-copy strong { font-size: 1.5rem; display: block; }
+.brand-copy small { font-size: 0.8rem; color: var(--apex-red); text-transform: uppercase; letter-spacing: 1px; }
+.site-nav { display: flex; gap: 2rem; }
+.site-nav a { color: var(--text-muted); text-decoration: none; font-weight: 500; transition: var(--transition); text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; }
+.site-nav a:hover { color: white; text-shadow: 0 0 8px var(--apex-red-glow); }
+.nav-toggle { display: none; } /* Hidden on desktop */
+
+/* --- Apex-Style Buttons --- */
+.button {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.8rem 2rem;
+  font-family: var(--font-display); font-size: 1.2rem; text-transform: uppercase; letter-spacing: 1px;
+  text-decoration: none; font-weight: 600;
+  /* The Apex Angled Cut */
+  clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
+  transition: var(--transition);
+  cursor: pointer;
+}
+.button-primary { background: var(--apex-red); color: white; border: none; }
+.button-primary:hover { background: white; color: var(--apex-red); box-shadow: 0 0 20px var(--apex-red-glow); }
+.button-secondary { background: rgba(255,255,255,0.1); color: white; }
+.button-secondary:hover { background: rgba(255,255,255,0.2); }
+
+/* --- Hero Section --- */
+.hero { position: relative; min-height: 100vh; display: flex; align-items: center; padding: 2rem; overflow: hidden; }
+#arena-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; opacity: 0.6; }
+.hero-overlay { position: absolute; inset: 0; background: radial-gradient(circle at center, transparent 0%, var(--bg-dark) 100%); z-index: 2; }
+.hero-content { position: relative; z-index: 3; max-width: 800px; margin-top: 4rem; }
+.hero-lede { font-size: 1.2rem; color: var(--text-muted); margin: 1.5rem 0 2.5rem; max-width: 600px; }
+.hero-actions { display: flex; gap: 1rem; }
+
+/* Event Panel (Floating Right) */
+.event-panel {
+  position: absolute; right: 4rem; bottom: 4rem; z-index: 3;
+  background: rgba(22, 22, 26, 0.8); backdrop-filter: blur(8px);
+  border-left: 4px solid var(--apex-red); padding: 2rem;
+  display: flex; flex-direction: column; gap: 1.5rem;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+}
+.event-panel span { color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; display: block; }
+.event-panel strong { font-family: var(--font-display); font-size: 1.8rem; line-height: 1; }
+
+/* --- Ticker Tape --- */
+.ticker { background: var(--apex-red); color: white; padding: 0.8rem 0; overflow: hidden; font-family: var(--font-display); font-size: 1.5rem; letter-spacing: 2px; text-transform: uppercase; white-space: nowrap; }
+.ticker-track { display: inline-block; animation: ticker 25s linear infinite; }
+.ticker-track span { margin-right: 3rem; }
+@keyframes ticker { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-50%, 0, 0); } }
+
+/* --- General Sections & Grids --- */
+.section { padding: 6rem 2rem; max-width: 1400px; margin: 0 auto; }
+.section-heading { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 4rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 1rem; }
+.format-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+
+/* Feature Cards */
+.feature-card {
+  background: var(--bg-panel); padding: 2.5rem; position: relative;
+  border-top: 3px solid transparent; transition: var(--transition);
+}
+.feature-card:hover { border-top-color: var(--apex-red); transform: translateY(-5px); background: #1a1a20; }
+.card-index { font-family: var(--font-display); font-size: 4rem; color: rgba(255,255,255,0.05); position: absolute; top: 1rem; right: 1rem; line-height: 1; pointer-events: none; }
+.feature-card h3 { font-size: 1.8rem; margin-bottom: 1rem; color: white; }
+
+/* --- Prize Section --- */
+.prize-shell { display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem; align-items: center; max-width: 1400px; margin: 0 auto; padding: 6rem 2rem; }
+.prize-ranks article {
+  display: flex; align-items: center; gap: 2rem; padding: 1.5rem;
+  background: linear-gradient(90deg, rgba(255,255,255,0.05) 0%, transparent 100%);
+  margin-bottom: 1rem; border-left: 2px solid var(--text-muted); transition: var(--transition);
+}
+.prize-ranks article:hover { border-left-color: var(--apex-red); background: linear-gradient(90deg, var(--apex-red-glow) 0%, transparent 100%); }
+.prize-ranks span { font-family: var(--font-display); font-size: 2.5rem; color: var(--apex-red); width: 50px; }
+.prize-ranks strong { font-size: 1.2rem; flex: 1; }
+.prize-ranks em { color: var(--text-muted); font-style: normal; }
+
+/* --- Countdown & Timeline --- */
+.countdown-panel { background: #111; border: 1px solid rgba(255,255,255,0.1); padding: 3rem; margin-bottom: 4rem; display: flex; justify-content: space-between; align-items: center; }
+.countdown-grid { display: flex; gap: 2rem; }
+.countdown-grid span { display: flex; flex-direction: column; align-items: center; }
+.countdown-grid strong { font-family: var(--font-display); font-size: 4rem; color: var(--apex-red); line-height: 1; }
+.timeline { border-left: 2px solid rgba(255,255,255,0.1); padding-left: 2rem; margin-left: 1rem; }
+.timeline-item { position: relative; margin-bottom: 3rem; }
+.timeline-item::before { content: ''; position: absolute; left: -2.35rem; top: 0; width: 12px; height: 12px; border-radius: 50%; background: var(--apex-red); border: 2px solid var(--bg-dark); }
+.timeline-item time { color: var(--apex-red); font-family: var(--font-display); font-size: 1.5rem; }
+
+/* --- Footer --- */
+.site-footer { text-align: center; padding: 4rem 2rem; border-top: 1px solid rgba(255,255,255,0.1); background: #050505; color: var(--text-muted); font-size: 0.9rem; }
+
+/* --- Responsive Design --- */
+@media (max-width: 1024px) {
+  .prize-shell { grid-template-columns: 1fr; }
+  .event-panel { position: relative; right: 0; bottom: 0; margin-top: 3rem; width: fit-content; }
+  .countdown-panel { flex-direction: column; gap: 2rem; text-align: center; }
+}
+@media (max-width: 768px) {
+  .site-nav, .header-cta { display: none; } /* Hide for mobile nav toggle */
+  .nav-toggle { display: block; background: none; border: none; cursor: pointer; width: 30px; height: 20px; position: relative; }
+  .nav-toggle-line { position: absolute; width: 100%; height: 2px; background: white; left: 0; transition: var(--transition); }
+  .nav-toggle-line:nth-child(1) { top: 0; }
+  .nav-toggle-line:nth-child(2) { top: 9px; }
+  .nav-toggle-line:nth-child(3) { top: 18px; }
+}
+
+/* --- Forms (Appended for contact.html) --- */
+.contact-form { display: flex; flex-direction: column; gap: 1.5rem; }
+.form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+.form-group label { font-family: var(--font-display); font-size: 1.2rem; color: var(--apex-red); text-transform: uppercase; letter-spacing: 1px; }
+.form-group input, .form-group select, .form-group textarea {
+  background: rgba(10, 10, 12, 0.8);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: white;
+  padding: 1rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  border-radius: 4px;
+  transition: var(--transition);
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+  outline: none;
+  border-color: var(--apex-red);
+  box-shadow: 0 0 10px rgba(218, 41, 42, 0.2);
+}
+.form-group select { appearance: none; cursor: pointer; }
+.form-card { border-top-color: var(--apex-red); }
+
+.logo-container {
+    height: 60px; /* Match this to your image's height */
+    display: flex;
+    align-items: center;
+    overflow: hidden; /* Prevents layout jitter */
+}
