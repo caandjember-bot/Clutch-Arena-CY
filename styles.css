@@ -272,3 +272,51 @@ body {
     padding: 0.5rem 0;
   }
 }
+
+/* ==========================================================================
+   FINAL BULLETPROOF MOBILE NAVIGATION OVERRIDE
+   ========================================================================== */
+@media (max-width: 768px) {
+  .site-header {
+    position: relative !important;
+    z-index: 10000 !important; /* Puts the header bar above the canvas particles */
+  }
+
+  /* Target the menu link container */
+  .site-nav {
+    display: none !important; /* Keep hidden until hamburger is clicked */
+    position: absolute !important;
+    top: 100% !important; /* Drops down exactly below the header bar */
+    left: 0 !important;
+    width: 100% !important;
+    background-color: #0a0a0c !important; /* Solid dark background matching your theme */
+    border-bottom: 3px solid var(--apex-red) !important; /* Premium branding accent border */
+    padding: 2rem 0 !important;
+    z-index: 9999 !important; /* Forces the navigation links to layer ON TOP of all content */
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 1.5rem !important;
+  }
+
+  /* This class will be applied by JS when clicked */
+  .site-nav.active {
+    display: flex !important; 
+  }
+
+  /* Style the links inside the mobile menu so they are clean and clickable */
+  .site-nav a {
+    display: block !important;
+    width: 100% !important;
+    text-align: center !important;
+    padding: 0.8rem 0 !important;
+    font-size: 1.5rem !important;
+    color: #ffffff !important;
+    font-family: var(--font-display) !important;
+    text-transform: uppercase !important;
+  }
+  
+  .nav-toggle {
+    display: block !important;
+    z-index: 10001 !important; /* Keeps the button clickable while menu is open */
+  }
+}

@@ -113,17 +113,19 @@ if (daysEl && hoursEl && minsEl && secsEl) {
     });
 }
 
-// --- 3. Simple Mobile Nav Toggle ---
+// --- 3. Clean Mobile Nav Toggle ---
 const navToggle = document.querySelector('[data-nav-toggle]');
 const siteNav = document.querySelector('[data-nav]');
 
 if (navToggle && siteNav) {
+    // Clear out any old lingering inline style attributes
+    siteNav.removeAttribute('style');
+
     navToggle.addEventListener('click', () => {
-        // Toggle accessibility state
         const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
         navToggle.setAttribute('aria-expanded', !isExpanded);
         
-        // Simply toggle the .active class we created in the CSS!
+        // Simply toggle our active CSS class!
         siteNav.classList.toggle('active');
     });
 }
