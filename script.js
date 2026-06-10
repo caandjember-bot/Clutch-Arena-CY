@@ -62,13 +62,13 @@ document.addEventListener('DOMContentLoaded', () => {
 // Set your tournament target date here
 const targetDate = new Date("August 01, 2026 10:00:00").getTime(); 
 
-const daysEl = document.getElementById('days');
-const hoursEl = document.getElementById('hours');
-const minsEl = document.getElementById('mins');
-const secsEl = document.getElementById('secs');
+// FIX: Matching selectors exactly to the data-attributes inside your HTML structure!
+const daysEl = document.querySelector('[data-countdown-days]');
+const hoursEl = document.querySelector('[data-countdown-hours]');
+const minsEl = document.querySelector('[data-countdown-minutes]');
+const secsEl = document.querySelector('[data-countdown-seconds]');
 
-// FIX 1: Safety Guard. If these elements don't exist on the current page 
-// (like rules.html), stop here so the script doesn't crash!
+// Safety Guard: Check if these elements exist on the current page view
 if (daysEl && hoursEl && minsEl && secsEl) {
     
     let countdownInterval;
@@ -93,7 +93,7 @@ if (daysEl && hoursEl && minsEl && secsEl) {
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        // Display results
+        // Display results with leading zero alignment
         daysEl.innerText = days < 10 ? '0' + days : days;
         hoursEl.innerText = hours < 10 ? '0' + hours : hours;
         minsEl.innerText = minutes < 10 ? '0' + minutes : minutes;
@@ -104,8 +104,7 @@ if (daysEl && hoursEl && minsEl && secsEl) {
     updateCountdown();
     countdownInterval = setInterval(updateCountdown, 1000);
 
-    // FIX 2: Mobile Tab Wakeup. Forces the clock to catch up instantly 
-    // the exact moment a user tabs back into the website!
+    // Mobile Tab Wakeup: Forces the clock to sync up instantly on mobile wake
     document.addEventListener('visibilitychange', () => {
         if (document.visibilityState === 'visible') {
             updateCountdown();
